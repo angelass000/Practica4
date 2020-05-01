@@ -8,6 +8,7 @@
  *
  */
 
+#include <stdint-gcc.h>
 #include "dyn/dyn_instr.h"
 #include "dyn/dyn_frames.h"
 
@@ -29,8 +30,8 @@ int dyn_write_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t reg_write_val)
 	parameters[0] = reg_addr;
 	parameters[1] = reg_write_val;
 	reply = RxTxPacket(module_id, 2, DYN_INSTR__WRITE, parameters);
-
-	//tx_err = Transmission error (error de transmissió)
+    //
+    //	//tx_err = Transmission error (error de transmissió)
 	//time_out= La resposta ha trigat més del esperat
 	//Com els dos són boleans, estem retornant en bits diferent un codi d'error que no pot ser
 	//tractat a un nivell més alt

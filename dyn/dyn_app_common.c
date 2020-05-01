@@ -11,6 +11,7 @@
 #include <stdint.h>
 
 #include "dyn/dyn_instr.h"
+#include "dyn_instr.h"
 
 /**
  * Turn on or off the LED of a given dynamixel module

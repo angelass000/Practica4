@@ -18,6 +18,9 @@
 #define MOTOR_3_AX_12 0x01 //Roda dreta
 #define SENSOR_AX_S1 0x00
 
+uint8_t dreta=0x01; //Sentit dret de la roda
+uint8_t esquerra=0x00; //Sentit esquerra de la roda
+
 uint8_t estado = Ninguno, estado_anterior = Ninguno, finalizar = 0;
 /**
  * main.c
@@ -48,6 +51,7 @@ int main(void)
     dyn_led_read(1, &tmp);
     //assert(tmp == 0);
     printf("MAIN: Setting LED to 1 \n");
+    //Aquí s'atura
 	dyn_led_control(1, 1);
 	printf("MAIN: Getting LED value \n");
     dyn_led_read(1, &tmp);
@@ -62,7 +66,6 @@ int main(void)
 	while(estado != Quit)
 	{
 		uint16_t velocitat=15;
-		byte direccio=1;
 		Get_estado(&estado, &estado_anterior);
 		if(estado != estado_anterior){
 			Set_estado_anterior(estado);
@@ -73,6 +76,8 @@ int main(void)
 				printf("Boton Up ('i') apretado\n");
 				printf("Comanda moviment endavant a velocitat" , velocitat, " pels motors" , MOTOR_2_AX_12, MOTOR_3_AX_12);
 				move_foward(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
+				//Imprimirem la direcció i el primer print serà la 0, ja que es tracta de la roda esquerra
+				// Al segon la direcció serà 1. La velocitat serà la mateixa en tots dos de la mateixa manera que l'ID dels motors.
 				break;
 			case Down:
 				printf("Boton Down ('m') apretado\n");
@@ -96,8 +101,8 @@ int main(void)
 				break;
 			case Sw1:
 				printf("Boton Sw1 ('a') apretado\n");
-				printf("Comanda moviment enrrera a velocitat" , velocitat, " pels motors" , MOTOR_2_AX_12, "amb direcció", direccio);
-				canviar_velocitat(MOTOR_2_AX_12, velocitat, direccio);
+				printf("Comanda moviment enrrera a velocitat" , velocitat, " pels motors" , MOTOR_2_AX_12, "amb direcció dreta", dreta);
+				canviar_velocitat(MOTOR_2_AX_12, velocitat, dreta);
 				break;
 			case Sw2:
 				printf("Boton Sw2 ('s') apretado\n");
@@ -107,7 +112,6 @@ int main(void)
 			case Quit:
 				printf("Adios!\n");
 				break;
-			//etc, etc...
 			}
 			fflush(stdout);
 		}

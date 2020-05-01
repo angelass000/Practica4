@@ -25,6 +25,7 @@
 #include "b_queue.h"
 #include "main.h"
 #include "dyn/dyn_instr.h"
+#include "../main.h"
 
 // Number of dynamixel devices to be emulated
 #define N_DEVICES 3
@@ -201,6 +202,7 @@ void* dyn_emu(void *vargp) {
 		dyn_mem[i][3] = i;
 	}
 	// TODO: Add other fields of interest of the dynamixel registers
+
 
 	// Add SIGTERM handler to kill the current thread
 	signal(SIGTERM, handler);

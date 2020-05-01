@@ -8,8 +8,11 @@
  * TODO: Generate another file for motors, with functions like "move_forward", etc
  */
 
+#include <stdint-gcc.h>
 #include "dyn/dyn_frames.h"
 #include "dyn/dyn_app_sensor.h"
+#include "dyn_app_sensor.h"
+#include "dyn_frames.h"
 
 
 int distance_wall_front(uint8_t module_id){
@@ -20,6 +23,5 @@ int distance_wall_front(uint8_t module_id){
 	TxPacket(module_id, 2, DYN_INSTR_READ, parameters); //Envia los datos al módulo indicado
 	distance=RxPacket(); //Recibe una respuesta de dicho módulo
 	return distance.StatusPacket[5]; //En la posición 5 se encuentra el parámetro donde indica la distacia.
-
 }
 

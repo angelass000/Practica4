@@ -12,6 +12,7 @@
 #ifndef __MSP432P401R__
 #include "hal_dyn_uart/hal_dyn_uart_emu.h"
 #include "dyn_test/fake_msp.h"
+#include "../dyn_test/fake_msp.h"
 
 #define f_TxUAC2 TxUAC2_emu
 #define f_Sentit_Dades_Tx Sentit_Dades_Tx_emu
