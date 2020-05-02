@@ -11,6 +11,8 @@
 #include <stdint-gcc.h>
 #include "dyn/dyn_instr.h"
 #include "dyn/dyn_frames.h"
+#include "dyn_frames.h"
+#include "dyn_app_motors.h"
 
 /**
  * Single byte write instruction
