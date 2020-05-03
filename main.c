@@ -76,36 +76,68 @@ int main(void)
 			fflush(stdout);
 			switch(estado){
 			case Up:
-				printf("Boton Up ('i') apretado\n");
-				printf("Comanda moviment endavant a velocitat " );
+                printf("Boton Up ('i') apretado\n");
+                printf("Comanda moviment endavant a velocitat " );
                 printf("%" PRIu16 , velocitat);
-                printf(" pels motors ");
-                printf(rodaEsquerra);
+                printf(" pels motors %");
+                printf("%" PRIu8 , MOTOR_2_AX_12);
                 printf(" i ");
-                printf(rodaDreta);
+                printf("%" PRIu8 , MOTOR_3_AX_12);
+                printf("\n");
                 move_foward(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
+                printf("Sortida esperada: \n");
+                printf("Moven roda 2 a velocitat 15 i amb direccio 0 \n");
+                printf("Moven roda 1 a velocitat 15 i amb direcci0 4");
 				//Imprimirem la direcció i el primer print serà la 0, ja que es tracta de la roda esquerra
 				// Al segon la direcció serà 1. La velocitat serà la mateixa en tots dos de la mateixa manera que l'ID dels motors.
 				break;
 			case Down:
 				printf("Boton Down ('m') apretado\n");
-				printf("Comanda moviment enrrera a velocitat" , velocitat, " pels motors" , MOTOR_2_AX_12,MOTOR_3_AX_12);
+				printf("Comanda moviment enrrera a velocitat " );
+				printf("%" PRIu16 , velocitat);
+				printf(" pels motors %");
+				printf("%" PRIu8 , MOTOR_2_AX_12);
+				printf(" i ");
+				printf("%" PRIu8 , MOTOR_3_AX_12);
+				printf("\n");
 				move_backward(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
+				printf("Sortida esperada:\n");
+				printf("Moven roda 2 a velocitat 15 i amb direccio 4 \n");
+				printf("Moven roda 1 a velocitat 15 i amb direccio 0");
 				break;
 			case Left:
 				printf("Boton Left ('j') apretado\n");
-				printf("Comanda moviment esquerra a velocitat" , velocitat, " pels motors" , MOTOR_2_AX_12, MOTOR_3_AX_12);
+				printf("Comanda moviment esquerra a velocitat");
+				printf("Comanda moviment esqierra a velocitat " );
+				printf("%" PRIu16 , velocitat);
+				printf(" pels motors %");
+				printf("%" PRIu8 , MOTOR_2_AX_12);
+				printf(" i ");
+				printf("%" PRIu8 , MOTOR_3_AX_12);
+				printf("\n");
 				move_left(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
+				printf("Moven roda 2 a velocitat 15 i amb direccio 0 \n");
+				printf("Moven roda 1 a velocitat 20 i amb direccio 4");
 				break;
 			case Right:
 				printf("Boton Right ('l') apretado\n");
-				printf("Comanda moviment dreta a velocitat" , velocitat, " pels motors" , MOTOR_2_AX_12, MOTOR_3_AX_12);
+				printf("Comanda moviment dreta a velocitat " );
+				printf("%" PRIu16 , velocitat);
+				printf(" pels motors %");
+				printf("%" PRIu8 , MOTOR_2_AX_12);
+				printf(" i ");
+				printf("%" PRIu8 , MOTOR_3_AX_12);
+				printf("\n");
 				move_right(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
+				printf("Moven roda 2 a velocitat 20 i amb direccio 0 \n");
+				printf("Moven roda 1 a velocitat 15 i amb direccio 4");
 				break;
 			case Center:
 				printf("Boton Center ('k') apretado\n");
-				printf("Comanda moviment continuament pel motor" , MOTOR_2_AX_12);
+				printf("Comanda moviment continuament pel motor");
+				printf("%" PRIu8 , MOTOR_2_AX_12);
 				moure_continuament(MOTOR_2_AX_12);
+				printf("Moure roda 2 continuament");
 				break;
 			case Sw1:
 				printf("Boton Sw1 ('a') apretado\n");
