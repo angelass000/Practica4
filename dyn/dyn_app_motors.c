@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <inttypes.h>
 
+#include <stdlib.h>
+#include <string.h>
 
 
 
@@ -40,11 +42,15 @@ void moure_roda(uint8_t module_id, bool sentit_horari, uint16_t speed){
     uint16_t vel = resposta.StatusPacket[6] | (resposta.StatusPacket[7] & 0x03); // Hem de juntarlos amb els 2 primers bits del paràmetre 7
     uint8_t dire = resposta.StatusPacket[7] & 0x04; // Hem d'agafar el tercer bit del reguistre low retornat a l'status packet
     printf("Moven roda ");
-	printf("%" PRIu16, resposta.StatusPacket[2]);
-	printf(" a velocitat ");
+    printf("%" PRIu16, resposta.StatusPacket[2]);
+    printf(" a velocitat ");
 	printf("%" PRIu16 ,vel);
 	printf(" i amb direccio ");
-	printf("%" PRIu8 ,dire);
+    if(dire==4){
+        printf("dreta");
+    }else{
+        printf("esquerra");
+    }
 	printf("\n");
 
 }
@@ -79,6 +85,7 @@ void move_right(uint8_t roda_1, uint8_t roda_2, uint16_t speed){
 
 
 void canviar_velocitat(uint8_t module_id, uint16_t speed, uint8_t direction){
+
 	byte mov_speed_l, mov_speed_h;
     //Associem a l'mov_speed_l els primers 8 bytes de speed value
 	mov_speed_l= speed & 0xFF;
@@ -93,12 +100,18 @@ void canviar_velocitat(uint8_t module_id, uint16_t speed, uint8_t direction){
     //Per comprovar si funciona:
     uint16_t vel = resposta.StatusPacket[6] | (resposta.StatusPacket[7] & 0x03); // Hem de juntarlos amb els 2 primers bits del paràmetre 7
     uint8_t dire = resposta.StatusPacket[7] & 0x04; // Hem d'agafar el tercer bit del reguistre low retornat a l'status packet
+
+
     printf("Canvi de velocitat per la roda ");
     printf("%" PRIu16, resposta.StatusPacket[2]);
     printf(" a velocitat ");
     printf("%" PRIu16 ,vel);
     printf(" i amb direccio ");
-    printf("%" PRIu8 ,dire);
+    if(dire==4){
+        printf("dreta");
+    }else{
+        printf("esquerra");
+    }
     printf("\n");
 }
 
