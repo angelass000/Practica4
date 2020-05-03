@@ -67,8 +67,8 @@ int main(void)
 	{
 		uint16_t velocitat=0x0F;
 		int sensor = 0;
-		int rodaDreta = 1;
-		int rodaEsquerra = 2;
+		uint8_t rodaDreta = 0x01;
+		uint8_t rodaEsquerra = 0x02;
 		Get_estado(&estado, &estado_anterior);
 		if(estado != estado_anterior){
 			Set_estado_anterior(estado);
@@ -116,6 +116,7 @@ int main(void)
 				printf("%" PRIu8 , MOTOR_3_AX_12);
 				printf("\n");
 				move_left(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
+				printf("Sortida esperada: \n");
 				printf("Moven roda 2 a velocitat 15 i amb direccio 0 \n");
 				printf("Moven roda 1 a velocitat 20 i amb direccio 4");
 				break;
@@ -129,6 +130,7 @@ int main(void)
 				printf("%" PRIu8 , MOTOR_3_AX_12);
 				printf("\n");
 				move_right(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
+				printf("Sortida esperada: \n");
 				printf("Moven roda 2 a velocitat 20 i amb direccio 0 \n");
 				printf("Moven roda 1 a velocitat 15 i amb direccio 4");
 				break;
@@ -137,17 +139,28 @@ int main(void)
 				printf("Comanda moviment continuament pel motor");
 				printf("%" PRIu8 , MOTOR_2_AX_12);
 				moure_continuament(MOTOR_2_AX_12);
+				printf("Sortida esperada: \n");
 				printf("Moure roda 2 continuament");
 				break;
 			case Sw1:
 				printf("Boton Sw1 ('a') apretado\n");
-				printf("Comanda moviment enrrera a velocitat" , velocitat, " pels motors" , MOTOR_2_AX_12, "amb direcció dreta", dreta);
+				printf("Comanda moviment enrrera a velocitat " );
+				printf("%" PRIu16 , velocitat);
+				printf(" pel motors %");
+				printf("%" PRIu8 , MOTOR_2_AX_12);
+				printf("amb direcció dreta");
+				printf("%" PRIu8 , dreta);
 				canviar_velocitat(MOTOR_2_AX_12, velocitat, dreta);
+				printf("Sortida esperada: \n");
+				printf("Canvi de velocitat per la roda 2 a velocitat 15 i amb direccio 4"); //direccio 4 dreta, direccio 0 esquerra
 				break;
 			case Sw2:
 				printf("Boton Sw2 ('s') apretado\n");
-				printf("Comanda moviment continuament pel motor" , SENSOR_AX_S1);
+				printf("Comanda moviment continuament pel motor ");
+				printf("%" PRIu8, SENSOR_AX_S1);
+				printf("\n");
 				distance_wall_front(SENSOR_AX_S1);
+
 				break;
 			case Quit:
 				printf("Adios!\n");
