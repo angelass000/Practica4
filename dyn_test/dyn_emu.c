@@ -216,9 +216,7 @@ void* dyn_emu(void *vargp) {
 		switch (fsm_state) {
 		case FSM_RX__HEADER_1:
 			printf("\n Waiting for new packet\n");
-			tmp = recv_byte();
-			assert(tmp == 0xFF);
-			break;
+
 		case FSM_RX__HEADER_2:
 			tmp = recv_byte();
 			assert(tmp == 0xFF);

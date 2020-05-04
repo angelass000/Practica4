@@ -29,10 +29,13 @@ typedef enum _dyn_reg_typ
 	DYN_REG_TURN_DIRECTION=0x28,
 	DYN_REG_LOAD_DIRECTION=0x29,
 	DYN_REG_Left_IR_Sensor_Data=0X1A,
+    DYN_REG_Center_IR_Sensor_Data=0X1B,
+    DYN_REG_Right_IR_Sensor_Data=0X1C,
 
 }DYN_REG__t;
 
-uint16_t distance_wall_front(uint8_t module_id);
+struct RxReturn distance_wall_front(uint8_t module_id);
+
 
 
 #endif /* DYN_SENSOR_H_ */

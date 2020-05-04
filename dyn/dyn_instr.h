@@ -26,7 +26,7 @@ typedef enum _dyn_reg_type
 } DYN_REG_t;
 
 int dyn_write_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t reg_write_val);
-int dyn_read_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t* reg_read_val);
+int dyn_read_byte(uint8_t module_id, DYN_REG_t reg_addr);
 
 int dyn_write(uint8_t module_id, DYN_REG_t reg_addr, uint8_t *val, uint8_t len);
 

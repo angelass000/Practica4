@@ -30,5 +30,5 @@ int dyn_led_control(uint8_t id, bool val) {
  * @param[out] val Current LED status
  */
 int dyn_led_read(uint8_t id, uint8_t *val) {
-	return dyn_read_byte(id, DYN_REG__LED, val);
+	return dyn_read_byte(id, DYN_REG__LED);
 }

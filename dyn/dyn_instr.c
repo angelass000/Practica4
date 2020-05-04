@@ -51,14 +51,15 @@ int dyn_write_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t reg_write_val)
  * @param[out] reg_read_val Pointer where the read value is stored
  * @return Error code to be treated at higher levels.
  */
-int dyn_read_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t* reg_read_val) {
+int dyn_read_byte(uint8_t module_id, DYN_REG_t reg_addr) {
+    uint8_t reg_read_val;
 	uint8_t parameters[2];
 	struct RxReturn reply;
 
 	parameters[0] = reg_addr;
 	parameters[1] = 1;
 	reply = RxTxPacket(module_id, 2, DYN_INSTR__READ, parameters);
-	*reg_read_val = reply.StatusPacket[5];
+	reg_read_val = reply.StatusPacket[5];
 
 	return (reply.tx_err < 1) | reply.time_out;
 }

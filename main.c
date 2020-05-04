@@ -14,6 +14,8 @@
 #include "joystick_emu/joystick.h"
 #include "dyn/dyn_app_motors.h"
 #include "dyn/dyn_app_sensor.h"
+#include "dyn/dyn_frames.h"
+#include "dyn_test/dyn_emu.c"
 
 #define MOTOR_2_AX_12 0x02 //Roda esquerra
 #define MOTOR_3_AX_12 0x01 //Roda dreta
@@ -159,9 +161,10 @@ int main(void)
 				printf("Comanda mesurar distància ");
 				printf("%" PRIu8, SENSOR_AX_S1);
 				printf("\n");
-				distance_wall_front(SENSOR_AX_S1);
+				struct RxReturn distancia=distance_wall_front(SENSOR_AX_S1);
+				printf("%" PRIu8 , distancia.StatusPacket[5]);
 
-				break;
+                break;
 			case Quit:
 				printf("Adios!\n");
 				break;
