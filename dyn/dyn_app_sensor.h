@@ -28,9 +28,11 @@ typedef enum _dyn_reg_typ
 	DYN_REG_MOV_SPEED__H=0x21,
 	DYN_REG_TURN_DIRECTION=0x28,
 	DYN_REG_LOAD_DIRECTION=0x29,
+	DYN_REG_Left_IR_Sensor_Data=0X1A,
+
 }DYN_REG__t;
 
-int distance_wall_front(uint8_t module_id);
+uint16_t distance_wall_front(uint8_t module_id);
 
 
 #endif /* DYN_SENSOR_H_ */

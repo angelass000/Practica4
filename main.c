@@ -86,8 +86,8 @@ int main(void)
                 printf("\n");
                 move_foward(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
                 printf("Sortida esperada: \n");
-                printf("Moven roda 2 a velocitat 15 i amb direccio esquerra \n");
-                printf("Moven roda 1 a velocitat 15 i amb direcci0 dreta");
+                printf("Movent roda 2 a velocitat 15 i amb direccio esquerra \n");
+                printf("Movent roda 1 a velocitat 15 i amb direccio dreta");
 				//Imprimirem la direcció i el primer print serà la 0, ja que es tracta de la roda esquerra
 				// Al segon la direcció serà 1. La velocitat serà la mateixa en tots dos de la mateixa manera que l'ID dels motors.
 				break;
@@ -102,8 +102,8 @@ int main(void)
 				printf("\n");
 				move_backward(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
 				printf("Sortida esperada:\n");
-				printf("Moven roda 2 a velocitat 15 i amb direccio dreta \n");
-				printf("Moven roda 1 a velocitat 15 i amb direccio esquerra");
+				printf("Movent roda 2 a velocitat 15 i amb direccio dreta \n");
+				printf("Movent roda 1 a velocitat 15 i amb direccio esquerra");
 				break;
 			case Left:
 				printf("Boton Left ('j') apretado\n");
@@ -117,8 +117,8 @@ int main(void)
 				printf("\n");
 				move_left(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
 				printf("Sortida esperada: \n");
-				printf("Moven roda 2 a velocitat 15 i amb direccio esquerra \n");
-				printf("Moven roda 1 a velocitat 20 i amb direccio dreta");
+				printf("Movent roda 2 a velocitat 15 i amb direccio esquerra \n");
+				printf("Movent roda 1 a velocitat 20 i amb direccio dreta");
 				break;
 			case Right:
 				printf("Boton Right ('l') apretado\n");
@@ -131,8 +131,8 @@ int main(void)
 				printf("\n");
 				move_right(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);
 				printf("Sortida esperada: \n");
-				printf("Moven roda 2 a velocitat 20 i amb direccio esquerra \n");
-				printf("Moven roda 1 a velocitat 15 i amb direccio dreta");
+				printf("Movent roda 2 a velocitat 20 i amb direccio esquerra \n");
+				printf("Movent roda 1 a velocitat 15 i amb direccio dreta");
 				break;
 			case Center:
 				printf("Boton Center ('k') apretado\n");
@@ -156,7 +156,7 @@ int main(void)
 				break;
 			case Sw2:
 				printf("Boton Sw2 ('s') apretado\n");
-				printf("Comanda moviment continuament pel motor ");
+				printf("Comanda mesurar distància ");
 				printf("%" PRIu8, SENSOR_AX_S1);
 				printf("\n");
 				distance_wall_front(SENSOR_AX_S1);

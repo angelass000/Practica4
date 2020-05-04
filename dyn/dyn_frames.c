@@ -9,6 +9,8 @@
 
 #include "dyn_frames.h"
 
+#include <stdio.h>
+
 #ifndef __MSP432P401R__
 #include "hal_dyn_uart/hal_dyn_uart_emu.h"
 #include "dyn_test/fake_msp.h"
@@ -80,7 +82,7 @@ struct RxReturn RxPacket(void) {
 
 	for (bCount = 0; bCount < 4; bCount++) {
 		f_rx_uart_byte(&respuesta);
-	} //fin del for
+    } //fin del for
 	if (!respuesta.time_out) {
 		for (bCount = 0; bCount < respuesta.StatusPacket[3]; bCount++) {
 			f_rx_uart_byte(&respuesta);

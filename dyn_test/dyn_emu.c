@@ -201,7 +201,9 @@ void* dyn_emu(void *vargp) {
 	for (i = 0; i < N_DEVICES; ++i) {
 		dyn_mem[i][3] = i;
 	}
-	// TODO: Add other fields of interest of the dynamixel registers
+    dyn_mem[0][0x1A] =0x03;
+    dyn_mem[0][0x1B] =0x04;
+    dyn_mem[0][0x1C] =0x05;
 
 
 	// Add SIGTERM handler to kill the current thread
@@ -214,6 +216,9 @@ void* dyn_emu(void *vargp) {
 		switch (fsm_state) {
 		case FSM_RX__HEADER_1:
 			printf("\n Waiting for new packet\n");
+			tmp = recv_byte();
+			assert(tmp == 0xFF);
+			break;
 		case FSM_RX__HEADER_2:
 			tmp = recv_byte();
 			assert(tmp == 0xFF);

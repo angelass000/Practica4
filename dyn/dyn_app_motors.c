@@ -41,6 +41,7 @@ void moure_roda(uint8_t module_id, bool sentit_horari, uint16_t speed){
 	//Per comprovar si funciona:
     uint16_t vel = resposta.StatusPacket[6] | (resposta.StatusPacket[7] & 0x03); // Hem de juntarlos amb els 2 primers bits del paràmetre 7
     uint8_t dire = resposta.StatusPacket[7] & 0x04; // Hem d'agafar el tercer bit del reguistre low retornat a l'status packet
+    printf("Sortida donada: ");
     printf("Moven roda ");
     printf("%" PRIu16, resposta.StatusPacket[2]);
     printf(" a velocitat ");

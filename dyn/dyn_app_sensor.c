@@ -17,12 +17,15 @@
 #include "dyn_frames.h"
 
 
-int distance_wall_front(uint8_t module_id){
-	uint8_t parameters[2];
-	parameters[0]=0x14; //Dirección donde se encuentra la instucción para poder leer la distancia detectada cuando hay un obstaculo
-	parameters[1]=1; //El parameters[0] ocupa 1 byte
+uint16_t distance_wall_front(uint8_t module_id){
+	uint8_t parameters[4];
+	parameters[0]=DYN_REG_Left_IR_Sensor_Data;
+    parameters[1]=0x1A;
+	parameters[2]=0x1B;
+	parameters[3]=0x1C;
 	 //Envia los datos al módulo indicado
-    struct RxReturn distance= RxTxPacket(module_id, 2, DYN_INSTR_READ, parameters);;
+    struct RxReturn distance= RxTxPacket(module_id, 4, DYN_INSTR_READ, parameters);
+    printf("%" PRIu8, distance.StatusPacket[4]);
 	return distance.StatusPacket[4]; //En la posición 4 se encuentra el parámetro donde indica la distacia.
 }
 
