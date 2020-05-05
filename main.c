@@ -16,6 +16,7 @@
 #include "dyn/dyn_app_sensor.h"
 #include "dyn/dyn_frames.h"
 #include "dyn_test/dyn_emu.c"
+#include "dyn_emu.h"
 
 #define MOTOR_2_AX_12 0x02 //Roda esquerra
 #define MOTOR_3_AX_12 0x01 //Roda dreta

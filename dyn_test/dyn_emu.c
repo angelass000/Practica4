@@ -25,6 +25,8 @@
 #include "b_queue.h"
 #include "main.h"
 #include "dyn/dyn_instr.h"
+#include "dyn_instr.h"
+
 #include "../main.h"
 
 // Number of dynamixel devices to be emulated
@@ -84,6 +86,8 @@ typedef struct __attribute__((__packed__)) _status_packet_header {
 	uint8_t err;
 } status_pckt_header_t;
 
+
+
 /**
  * Function to receive a single byte using semaphores for handshake
  */
@@ -119,16 +123,18 @@ static void tx_byte(uint8_t data) {
  * @param[in] buff RX or TX parameters field
  * @return Returns the computed checksum byte
  */
-uint8_t calc_chk_sum(const uint8_t *header, const uint8_t *buff) {
-	uint8_t chk_sum = 0;
-	for (int i = 0; i < 3; ++i) {
-		chk_sum += header[2 + i];
-	}
-	for (int i = 0; i < header[3] - 2; ++i) {
-		chk_sum += buff[i];
-	}
-	chk_sum = ~chk_sum;
-	return chk_sum;
+;
+
+static uint8_t calc_chk_sum(uint8_t *header, uint8_t *buff) {
+    uint8_t chk_sum = 0;
+    for (int i = 0; i < 3; ++i) {
+        chk_sum += header[2 + i];
+    }
+    for (int i = 0; i < header[3] - 2; ++i) {
+        chk_sum += buff[i];
+    }
+    chk_sum = ~chk_sum;
+    return chk_sum;
 }
 
 /**
@@ -140,8 +146,8 @@ uint8_t calc_chk_sum(const uint8_t *header, const uint8_t *buff) {
  * @param[out] tx_header Header of the status packet
  * @param[in] tx_buff Status packet parameters
  */
-void decode_and_build_reply(instr_pck_header_t rx_header, const uint8_t *rx_buff,
-bool rx_chk_err, status_pckt_header_t *tx_header, uint8_t *tx_buff) {
+static void decode_and_build_reply(instr_pck_header_t rx_header, const uint8_t *rx_buff,
+        bool rx_chk_err, status_pckt_header_t *tx_header, uint8_t *tx_buff) {
 
 	tx_header->id = rx_header.id;
 	if (rx_chk_err) {
@@ -177,9 +183,13 @@ static void handler(int signum)
 	pthread_exit(NULL);
 }
 
-/**
+
+
+static _Noreturn /**
  * Thread to emulate the Dynamixel communication
  */
+
+
 void* dyn_emu(void *vargp) {
 	uint8_t i = 0, rx_chk, rx_recv_chk, tmp, tx_chk;
 	bool rx_chk_err;
@@ -216,7 +226,9 @@ void* dyn_emu(void *vargp) {
 		switch (fsm_state) {
 		case FSM_RX__HEADER_1:
 			printf("\n Waiting for new packet\n");
-
+			tmp = recv_byte();
+			assert(tmp == 0xFF);
+			break;
 		case FSM_RX__HEADER_2:
 			tmp = recv_byte();
 			assert(tmp == 0xFF);
@@ -248,17 +260,21 @@ void* dyn_emu(void *vargp) {
 			} else {
 				rx_chk_err = false;
 			}
-			decode_and_build_reply(rx_header, rx_buff, rx_chk_err, &tx_header,
-					tx_buff);
+			decode_and_build_reply(rx_header, rx_buff, rx_chk_err, &tx_header,tx_buff);
 			i = 0;
 			break;
 		case FSM_TX__HEADER_1:
 			printf("\n Sending reply\n");
+			tx_byte(*(((uint8_t*) &tx_header) + i++));
 			break;
 		case FSM_TX__HEADER_2:
+            tx_byte(*(((uint8_t*) &tx_header) + i++));
+                break;
 		case FSM_TX__ID:
+		    tx_byte(tx_header.id);
+                break;
 		case FSM_TX__LEN:
-			tx_byte(*(((uint8_t*) &tx_header) + i++));
+			tx_byte(tx_header.len);
 			break;
 		case FSM_TX__ERR:
 			tx_byte(tx_header.err);
