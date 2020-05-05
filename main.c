@@ -163,8 +163,12 @@ int main(void)
 				printf("%" PRIu8, SENSOR_AX_S1);
 				printf("\n");
 				struct RxReturn distancia=distance_wall_front(SENSOR_AX_S1);
-				printf("%" PRIu8 , distancia.StatusPacket[5]);
-
+				uint8_t left_IR_Sensor=(distancia.StatusPacket[5]);
+				uint8_t center_IR_Sensor=(distancia.StatusPacket[6]);
+				uint8_t right_IR_Sensor=(distancia.StatusPacket[7]);
+				assert(left_IR_Sensor==3);
+				assert(center_IR_Sensor==4);
+				assert(right_IR_Sensor==5);
                 break;
 			case Quit:
 				printf("Adios!\n");
