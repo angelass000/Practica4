@@ -63,7 +63,6 @@ void move_foward(uint8_t roda_1, uint8_t roda_2, uint16_t speed){
 
 
 }
-
 void move_backward(uint8_t roda_1, uint8_t roda_2,  uint16_t speed){
 	bool sentit_horari=true;
 	moure_roda(roda_1, sentit_horari, speed); //Roda esquerra amb direcció dreta

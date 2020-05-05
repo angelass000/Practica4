@@ -97,16 +97,16 @@ int main(void)
 
 				break;
 			case Down:
-			    //Comprovació de velocitat i id per la comanda moviment enrrera
+			    //Comprovació de velocitat i id per la comanda moviment enrera
 				printf("Boton Down ('m') apretado\n");
-				printf("Comanda moviment enrrera a velocitat " );
+				printf("Comanda moviment enrera a velocitat " );
 				printf("%" PRIu16 , velocitat);
 				printf(" pels motors %");
 				printf("%" PRIu8 , MOTOR_2_AX_12);
 				printf(" i ");
 				printf("%" PRIu8 , MOTOR_3_AX_12);
 				printf("\n");
-				move_backward(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);//cridem a la funció moure cap enrrera amb els dos motors
+				move_backward(MOTOR_2_AX_12, MOTOR_3_AX_12, velocitat);//cridem a la funció moure cap enrera amb els dos motors
 				// ,els quals hem definit amb dos valors de 1 per la roda dreta i 2 la roda esquerra, i la velocitat
 				printf("Sortida esperada:\n");
 				printf("Movent roda 2 a velocitat 15 i amb direccio dreta \n");
