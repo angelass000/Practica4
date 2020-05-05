@@ -22,6 +22,7 @@
 #define MOTOR_3_AX_12 0x01 //Roda dreta
 #define SENSOR_AX_S1 0x00
 
+
 uint8_t dreta=0x01; //Sentit dret de la roda
 uint8_t esquerra=0x00; //Sentit esquerra de la roda
 
