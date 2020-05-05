@@ -55,8 +55,7 @@ int main(void)
     dyn_led_read(1, &tmp);
     assert(tmp == 0);
     printf("MAIN: Setting LED to 1 \n");
-    //Aquí s'atura
-	dyn_led_control(1, 1);
+    dyn_led_control(1, 1);
 	printf("MAIN: Getting LED value \n");
     dyn_led_read(1, &tmp);
     //assert(tmp == 1);
