@@ -49,7 +49,7 @@ int main(void)
 	pthread_create(&jid, NULL, joystick_emu, (void*) &jid);
 
 	//Testing some high level function
-	/*printf("MAIN: Setting LED to 0 \n");
+	printf("MAIN: Setting LED to 0 \n");
     dyn_led_control(1, 0);
     printf("MAIN: Getting LED value \n");
     dyn_led_read(1, &tmp);
@@ -59,7 +59,7 @@ int main(void)
 	dyn_led_control(1, 1);
 	printf("MAIN: Getting LED value \n");
     dyn_led_read(1, &tmp);
-    assert(tmp == 1);*/
+    //assert(tmp == 1);
 
 	printf("************************\n");
 	printf("Test passed successfully\n");
@@ -192,13 +192,13 @@ int main(void)
                 break;
                 //Com podem observar, el codi s'executa correctament ja que els tres asserts son correctes
 			case Quit:
-				printf("Adios!\n");
+				printf("Adeu!\n");
 				break;
 			}
 			fflush(stdout);
 		}
 	}
-	printf("Programa terminado\n");
+	printf("Programa finalitzat\n");
 	//Signal the emulation thread to stop
 	pthread_kill(tid, SIGTERM);
 	pthread_kill(jid, SIGTERM);
